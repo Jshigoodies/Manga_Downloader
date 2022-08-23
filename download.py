@@ -20,7 +20,7 @@ class Download:
         self.ignored_exceptions = (
             NoSuchElementException, StaleElementReferenceException,)  # This is a solution that a wished i knew earlier
 
-    def imgSave(self, website):
+    def imgSave(self, website, title):
         not_done = True
         num = 0
         while not_done:
@@ -33,6 +33,8 @@ class Download:
                                         (By.XPATH, '/html/body/div[2]/div/div/div/div/div[2]/a[' + str(num) + ']')))
                 time.sleep(1) # slow the fk down
                 chapter.click()
+
+                os.mkdir(str(title) + '/' + str(num)) # makes chapter folder
 
                 flip_pages = True
                 #########################################
@@ -50,7 +52,7 @@ class Download:
                         time.sleep(1)  # slow the fk down
                         self.driver.get(source)
                         time.sleep(1)  # slow the fk down
-                        self.driver.save_screenshot('Chapter_' + str(num) + '_' + str(page_num) + '.png')
+                        self.driver.save_screenshot(str(title) + '/' + str(num) +'/Chapter_' + str(num) + '_' + str(page_num) + '.png')
                         time.sleep(1)  # slow the fk down
                         self.driver.get(current_page)
                         # flip pages

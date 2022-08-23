@@ -2,7 +2,7 @@ from selenium import webdriver
 from download import Download
 PATH = "chromedriver_win32\chromeDriver.exe"
 driver = webdriver.Chrome(PATH)
-
+import os
 dl = Download(driver)
 
 while True:
@@ -20,6 +20,11 @@ while True:
             print(driver.title)
             dl.showChapters()
             driver.implicitly_wait(10)  # slow the fk down
-            dl.imgSave(download_link)
+
+            folder = driver.title
+            folder = folder.replace(' ', '_')
+            folder = folder.replace('|', '_')
+            os.mkdir(folder)
+            dl.imgSave(download_link, title=folder)
     except Exception as e:
         print(e.__str__())
