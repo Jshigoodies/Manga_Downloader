@@ -19,6 +19,7 @@ while True:
             driver.get(download_link)
             print(driver.title)
             dl.showChapters()
+            driver.implicitly_wait(10)  # slow the fk down
             dl.imgSave(download_link)
     except Exception as e:
         print(e.__str__())
