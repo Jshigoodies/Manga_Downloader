@@ -7,7 +7,7 @@ dl = Download(driver)
 
 while True:
     try:
-        print("0. Quit\n1. MangaLife")
+        print("0. Quit\n1. MangaLife\n2. H-word")
         num = input()
         if int(num) == 0:
             driver.quit()
@@ -26,5 +26,11 @@ while True:
             folder = folder.replace('|', '_')
             os.mkdir(folder)
             dl.imgSave(download_link, title=folder)
+        elif int(num) == 2:
+            print("Enter Hentai Link: ")
+            download_link = ""
+            download_link = input()
+            driver.get(download_link)
+            print(driver.title)
     except Exception as e:
         print(e.__str__())
